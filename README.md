@@ -1,51 +1,51 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# gtable <a href="https://gtable.r-lib.org"><img src="man/figures/logo.png" align="right" height="138" /></a>
+# nxtreamin
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/r-lib/gtable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/gtable/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/r-lib/nxtreamin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/nxtreamin/actions/workflows/R-CMD-check.yaml)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/gtable)](https://CRAN.R-project.org/package=gtable)
+status](https://www.r-pkg.org/badges/version/nxtreamin)](https://CRAN.R-project.org/package=nxtreamin)
 [![Codecov test
-coverage](https://codecov.io/gh/r-lib/gtable/graph/badge.svg)](https://app.codecov.io/gh/r-lib/gtable)
+coverage](https://codecov.io/gh/r-lib/nxtreamin/graph/badge.svg)](https://app.codecov.io/gh/r-lib/nxtreamin)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
-gtable is a layout engine built on top of the grid package. It is used
+nxtreamin is a layout engine built on top of the grid package. It is used
 to abstract away the creation of (potentially nested) grids of viewports
-into which graphic objects can be placed. gtable makes it easy to ensure
+into which graphic objects can be placed. nxtreamin makes it easy to ensure
 alignment of graphic elements and piecemeal compositions of complex
-graphics. gtable is the layout engine powering
+graphics. nxtreamin is the layout engine powering
 [ggplot2](https://ggplot2.tidyverse.org) and is thus used extensively by
 many plotting functions in R without being called directly.
 
 ## Installation
 
-You can install the released version of gtable from
+You can install the released version of nxtreamin from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("gtable")
+install.packages("nxtreamin")
 ```
 
 or use the remotes package to install the development version from
-[GitHub](https://github.com/r-lib/gtable)
+[GitHub](https://github.com/r-lib/nxtreamin)
 
 ``` r
 # install.packages("pak")
-pak::pak("r-lib/gtable")
+pak::pak("r-lib/nxtreamin")
 ```
 
 ## Example
 
-ggplot2 uses gtable for laying out plots, and it is possible to access
-the gtable representation of a plot for inspection and modification:
+ggplot2 uses nxtreamin for laying out plots, and it is possible to access
+the nxtreamin representation of a plot for inspection and modification:
 
 ``` r
-library(gtable)
+library(nxtreamin)
 library(ggplot2)
 
 p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
@@ -79,12 +79,12 @@ p_table
 #> 22 21 (14-14, 7- 7)          caption          zeroGrob[plot.caption..zeroGrob.36]
 ```
 
-A gtable object is a collection of graphic elements along with their
+A nxtreamin object is a collection of graphic elements along with their
 placement in the grid and the dimensions of the grid itself. Graphic
-elements can span multiple rows and columns in the grid and be gtables
+elements can span multiple rows and columns in the grid and be nxtreamins
 themselves allowing for very complex automatically arranging layouts.
 
-A gtable object is itself a grob, and can thus be drawn using standard
+A nxtreamin object is itself a grob, and can thus be drawn using standard
 functions from the grid package:
 
 ``` r
@@ -92,9 +92,9 @@ library(grid)
 grid.draw(p_table) # alternative use plot(p_table)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" alt="A scatterplot of miles per gallon against displacement based on the mtcars dataset. The plot is rendered by first converting the ggplot object to a gtable and then plotting the gtable" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" alt="A scatterplot of miles per gallon against displacement based on the mtcars dataset. The plot is rendered by first converting the ggplot object to a nxtreamin and then plotting the nxtreamin" width="100%" />
 
-While most people will interact with gtable through ggplot2, it is
+While most people will interact with nxtreamin through ggplot2, it is
 possible to build a plot from the ground up.
 
 ``` r
@@ -107,14 +107,14 @@ points <- pointsGrob(
 xaxis <- xaxisGrob(at = c(0, 0.25, 0.5, 0.75, 1))
 yaxis <- yaxisGrob(at = c(0, 0.25, 0.5, 0.75, 1))
 
-# Setup the gtable layout
-plot <- gtable(
+# Setup the nxtreamin layout
+plot <- nxtreamin(
   widths = unit(c(1.5, 0, 1, 0.5), c('cm', 'cm', 'null', 'cm')),
   heights = unit(c(0.5, 1, 0, 1), c('cm', 'null', 'cm', 'cm'))
 )
 
 # Add the grobs
-plot <- gtable_add_grob(
+plot <- nxtreamin_add_grob(
   plot,
   grobs = list(points, xaxis, yaxis),
   t = c(2, 3, 2),
@@ -126,4 +126,4 @@ plot <- gtable_add_grob(
 grid.draw(plot)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" alt="A scatterplot of random numbers. The scatterplot is created by combining separate grobs created with grid using gtable." width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" alt="A scatterplot of random numbers. The scatterplot is created by combining separate grobs created with grid using nxtreamin." width="100%" />
